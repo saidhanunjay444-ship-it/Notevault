@@ -1,0 +1,2170 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light" data-version="1.0.0" data-app="NoteVault" data-developed-by="Project K" data-development-date="March 2026">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5">
+<meta name="theme-color" content="#6C63FF" id="MetaThemeColor">
+<meta name="description" content="NoteVault by Project K — Search, filter, contribute and download college notes across Engineering, Science, Commerce, Arts, and Medical streams.">
+<meta name="keywords" content="college notes, study material, engineering notes, science notes, PDF notes, contribute notes, semester notes, Project K">
+<meta name="author" content="Project K">
+<meta name="robots" content="index, follow">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta property="og:title" content="NoteVault — College Notes Platform by Project K">
+<meta property="og:description" content="Search, contribute and download college notes across 5 academic streams.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://notevault.app">
+<meta property="og:site_name" content="NoteVault">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NoteVault — College Notes Platform by Project K">
+<meta name="twitter:description" content="Search, contribute and download college notes.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="NoteVault">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="application-name" content="NoteVault">
+<meta name="msapplication-TileColor" content="#6C63FF">
+<meta name="format-detection" content="telephone=no">
+<title>NoteVault — College Notes Sharing Platform | Project K</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📚</text></svg>">
+<link rel="preload" href="styles.css" as="style">
+<link rel="preload" href="app.js" as="script">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<noscript>
+<div style="background:#FED7D7;color:#C53030;padding:1.5rem;text-align:center;font-weight:700;font-size:1rem;font-family:system-ui,sans-serif;position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:99999;">
+<div>
+<p style="font-size:2rem;margin-bottom:0.5rem;">📚</p>
+<p style="font-size:1.2rem;margin-bottom:0.3rem;">NoteVault requires JavaScript</p>
+<p style="font-size:0.85rem;font-weight:500;">Please enable JavaScript in your browser settings and reload the page.</p>
+</div>
+</div>
+</noscript>
+<div class="AppLoadingScreen" id="AppLoadingScreen" role="progressbar" aria-label="Loading NoteVault">
+<div class="AppLoadingScreen__Brand" aria-hidden="true">
+<span class="AppLoadingScreen__Icon">📚</span>
+<span class="AppLoadingScreen__Title">NoteVault</span>
+<span class="AppLoadingScreen__Version">v1.0</span>
+</div>
+<div class="AppLoadingScreen__Spinner" aria-hidden="true">
+<div class="Spinner__Ring Spinner__Ring--Primary"></div>
+<div class="Spinner__Ring Spinner__Ring--Secondary"></div>
+<div class="Spinner__Ring Spinner__Ring--Accent"></div>
+</div>
+<p class="AppLoadingScreen__Status" id="LoadingStatusText">Preparing your notes...</p>
+<div class="AppLoadingScreen__ProgressBar" id="LoadingProgressBar">
+<div class="AppLoadingScreen__ProgressFill" id="LoadingProgressFill"></div>
+</div>
+<div class="AppLoadingScreen__Dots" aria-hidden="true">
+<span class="Dot Dot--One"></span>
+<span class="Dot Dot--Two"></span>
+<span class="Dot Dot--Three"></span>
+</div>
+</div>
+<div class="AppWrapper" id="AppWrapper">
+<div class="ScrollProgressBar" id="ScrollProgressBar" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+<a href="#MainContentArea" class="SkipToContent" id="SkipToContent" tabindex="0" aria-label="Skip to main content">Skip to main content</a>
+<div class="AnnouncementBanner" id="AnnouncementBanner" role="alert" aria-live="polite" data-banner-id="launch-v1" style="display:none;">
+<div class="AnnouncementBanner__Content">
+<span class="AnnouncementBanner__Icon" aria-hidden="true">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+<polyline points="22 4 12 14.01 9 11.01"></polyline>
+</svg>
+</span>
+<p class="AnnouncementBanner__Text">
+<strong>Welcome to NoteVault v1.0!</strong>
+                        Built by Project K — Browse notes, bookmark favorites, and contribute your own study material. All files are stored locally in your browser.
+
+</p>
+<button class="AnnouncementBanner__DismissBtn" id="DismissAnnouncementBtn" aria-label="Dismiss" title="Dismiss">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<line x1="18" y1="6" x2="6" y2="18"></line>
+<line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="AnnouncementBanner__Timer" id="AnnouncementTimer" aria-hidden="true"></div>
+</div>
+<header class="HeroHeader" id="HeroHeader" role="banner" aria-label="NoteVault header">
+<div class="HeroHeader__BlobOne" aria-hidden="true"></div>
+<div class="HeroHeader__BlobTwo" aria-hidden="true"></div>
+<div class="HeroHeader__BlobThree" aria-hidden="true"></div>
+<div class="HeroHeader__ParticleLayer" id="ParticleLayer" aria-hidden="true"></div>
+<div class="HeroHeader__GradientOverlay" aria-hidden="true"></div>
+<div class="HeroHeader__TopBar" id="HeroTopBar">
+<div class="HeroHeader__TopBarBrand" aria-hidden="true">
+<span class="HeroHeader__TopBarIcon">📚</span>
+<span class="HeroHeader__TopBarName">NoteVault</span>
+</div>
+<nav class="HeaderNavigation" id="HeaderNavigation" aria-label="Quick actions">
+<button class="HeaderNavigation__Button" id="ContributeNoteBtn" aria-label="Contribute a note" title="Contribute Note (+)" data-action="contribute">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<line x1="12" y1="5" x2="12" y2="19"></line>
+<line x1="5" y1="12" x2="19" y2="12"></line>
+</svg>
+</button>
+<button class="HeaderNavigation__Button" id="KeyboardShortcutsOpener" aria-label="Keyboard shortcuts" title="Shortcuts (?)" data-action="shortcuts">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<rect x="2" y="4" width="20" height="16" rx="2" ry="2"></rect>
+<path d="M6 8h.001"></path>
+<path d="M10 8h.001"></path>
+<path d="M14 8h.001"></path>
+<path d="M18 8h.001"></path>
+<path d="M8 12h.001"></path>
+<path d="M12 12h.001"></path>
+<path d="M16 12h.001"></path>
+<path d="M7 16h10"></path>
+</svg>
+</button>
+<button class="HeaderNavigation__Button" id="AppSettingsOpener" aria-label="Open settings" title="Settings" data-action="settings">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="3"></circle>
+<path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"></path>
+</svg>
+</button>
+<button class="ThemeToggler" id="ThemeToggler" aria-label="Toggle dark mode" title="Toggle theme (T)" role="switch" aria-checked="false" data-action="theme">
+<span class="ThemeToggler__DarkIcon" aria-hidden="true">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+</svg>
+</span>
+<span class="ThemeToggler__LightIcon" aria-hidden="true" style="display:none;">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="12" cy="12" r="5"></circle>
+<line x1="12" y1="1" x2="12" y2="3"></line>
+<line x1="12" y1="21" x2="12" y2="23"></line>
+<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+<line x1="1" y1="12" x2="3" y2="12"></line>
+<line x1="21" y1="12" x2="23" y2="12"></line>
+<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+</svg>
+</span>
+</button>
+</nav>
+</div>
+<div class="HeroHeader__Content" id="HeroContent">
+<h1 class="HeroHeader__Logo" id="AppLogo">
+<span class="HeroHeader__LogoIcon" aria-hidden="true">📚</span>
+<span class="HeroHeader__LogoText">
+                            Note<span class="HeroHeader__LogoAccent">Vault</span>
+</span>
+</h1>
+<p class="HeroHeader__Tagline" id="AppTagline">Your one-stop destination for college notes — search, filter, contribute &amp;download</p>
+<div class="StatsRow" id="StatsRow" role="group" aria-label="Platform statistics">
+<div class="StatCard" data-stat-type="notes">
+<div class="StatCard__Icon" aria-hidden="true">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+<polyline points="14 2 14 8 20 8"></polyline>
+</svg>
+</div>
+<div class="StatCard__Value" id="TotalNotesCount" data-target="0">0</div>
+<div class="StatCard__Label">Notes</div>
+</div>
+<div class="StatCard" data-stat-type="subjects">
+<div class="StatCard__Icon" aria-hidden="true">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M4 19.5A2.5 2.5 0 016.5 17H20"></path>
+<path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"></path>
+</svg>
+</div>
+<div class="StatCard__Value" id="TotalSubjectsCount" data-target="0">0</div>
+<div class="StatCard__Label">Subjects</div>
+</div>
+<div class="StatCard" data-stat-type="topics">
+<div class="StatCard__Icon" aria-hidden="true">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<line x1="8" y1="6" x2="21" y2="6"></line>
+<line x1="8" y1="12" x2="21" y2="12"></line>
+<line x1="8" y1="18" x2="21" y2="18"></line>
+<line x1="3" y1="6" x2="3.01" y2="6"></line>
+<line x1="3" y1="12" x2="3.01" y2="12"></line>
+<line x1="3" y1="18" x2="3.01" y2="18"></line>
+</svg>
+</div>
+<div class="StatCard__Value" id="TotalTopicsCount" data-target="0">0</div>
+<div class="StatCard__Label">Topics</div>
+</div>
+<div class="StatCard" data-stat-type="streams">
+<div class="StatCard__Icon" aria-hidden="true">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+<polyline points="2 17 12 22 22 17"></polyline>
+<polyline points="2 12 12 17 22 12"></polyline>
+</svg>
+</div>
+<div class="StatCard__Value" id="TotalStreamsCount" data-target="0">0</div>
+<div class="StatCard__Label">Streams</div>
+</div>
+<div class="StatCard" data-stat-type="contributors">
+<div class="StatCard__Icon" aria-hidden="true">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+<circle cx="9" cy="7" r="4"></circle>
+<path d="M23 21v-2a4 4 0 00-3-3.87"></path>
+<path d="M16 3.13a4 4 0 010 7.75"></path>
+</svg>
+</div>
+<div class="StatCard__Value" id="TotalContributorsCount" data-target="0">0</div>
+<div class="StatCard__Label">Contributors</div>
+</div>
+</div>
+<div class="StreamPillsRow" id="StreamPillsRow" role="group" aria-label="Quick stream filter" data-sync-target="StreamFilter">
+<button class="StreamPill StreamPill--Active" data-stream-value="" data-sync-key="stream" aria-pressed="true">
+<span class="StreamPill__Icon" aria-hidden="true">📋</span>
+<span class="StreamPill__Name">All</span>
+</button>
+<button class="StreamPill" data-stream-value="Engineering" data-sync-key="stream" aria-pressed="false">
+<span class="StreamPill__Icon" aria-hidden="true">⚙️</span>
+<span class="StreamPill__Name">Engineering</span>
+<span class="StreamPill__Count" id="PillCountEngineering">0</span>
+</button>
+<button class="StreamPill" data-stream-value="Science" data-sync-key="stream" aria-pressed="false">
+<span class="StreamPill__Icon" aria-hidden="true">🔬</span>
+<span class="StreamPill__Name">Science</span>
+<span class="StreamPill__Count" id="PillCountScience">0</span>
+</button>
+<button class="StreamPill" data-stream-value="Commerce" data-sync-key="stream" aria-pressed="false">
+<span class="StreamPill__Icon" aria-hidden="true">💼</span>
+<span class="StreamPill__Name">Commerce</span>
+<span class="StreamPill__Count" id="PillCountCommerce">0</span>
+</button>
+<button class="StreamPill" data-stream-value="Arts" data-sync-key="stream" aria-pressed="false">
+<span class="StreamPill__Icon" aria-hidden="true">🎨</span>
+<span class="StreamPill__Name">Arts</span>
+<span class="StreamPill__Count" id="PillCountArts">0</span>
+</button>
+<button class="StreamPill" data-stream-value="Medical" data-sync-key="stream" aria-pressed="false">
+<span class="StreamPill__Icon" aria-hidden="true">🏥</span>
+<span class="StreamPill__Name">Medical</span>
+<span class="StreamPill__Count" id="PillCountMedical">0</span>
+</button>
+</div>
+</div>
+</header>
+<div class="SearchFilterContainer">
+<div class="SearchFilterRow" id="SearchFilterRow">
+<div class="SearchBox" id="SearchBox" role="search" aria-label="Search notes">
+<span class="SearchBox__Icon" id="SearchBoxIcon" aria-hidden="true">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<circle cx="11" cy="11" r="8"></circle>
+<line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+</svg>
+</span>
+<input type="text" class="SearchBox__Input" id="SearchInput" placeholder="Search by subject, topic, course, stream, author..." autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Search notes" role="combobox" aria-expanded="false" aria-controls="SearchSuggestionsPanel" aria-autocomplete="list" aria-activedescendant="" maxlength="120" data-sync-key="search">
+<div class="SearchBox__Actions" id="SearchBoxActions">
+<button class="SearchBox__ClearBtn" id="ClearSearchBtn" aria-label="Clear search" title="Clear (Esc)" tabindex="-1">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<line x1="18" y1="6" x2="6" y2="18"></line>
+<line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+</button>
+<kbd class="SearchBox__Shortcut" id="SearchShortcutHint" aria-hidden="true" title="Press / to search">/</kbd>
+</div>
+<div class="SearchSuggestionsPanel" id="SearchSuggestionsPanel" role="listbox" aria-label="Search suggestions" tabindex="-1"></div>
+<div class="RecentSearchesPanel" id="RecentSearchesPanel" role="listbox" aria-label="Recent searches" style="display:none;">
+<div class="RecentSearchesPanel__Header">
+<span class="RecentSearchesPanel__Title">Recent Searches</span>
+<button class="RecentSearchesPanel__ClearAll" id="ClearAllRecentSearches" aria-label="Clear recent searches">Clear</button>
+</div>
+<div class="RecentSearchesPanel__List" id="RecentSearchesList"></div>
+</div>
+</div>
+<button class="FilterToggleButton" id="FilterToggleButton" aria-label="Toggle filters" aria-expanded="false" aria-controls="FilterDropdownPanel" title="Filters (F)">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+</svg>
+<span class="FilterToggleButton__Badge" id="ActiveFilterCountBadge" data-count="0">0</span>
+</button>
+<button class="ContributeFloatingBtn" id="ContributeFloatingBtn" aria-label="Contribute a note" title="Add Note (+)">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<line x1="12" y1="5" x2="12" y2="19"></line>
+<line x1="5" y1="12" x2="19" y2="12"></line>
+</svg>
+</button>
+</div>
+<div class="FilterDropdownAnchor" id="FilterDropdownAnchor">
+<div class="FilterDropdownPanel" id="FilterDropdownPanel" role="region" aria-label="Filter options" aria-hidden="true">
+<div class="FilterDropdownPanel__Header">
+<span class="FilterDropdownPanel__Title">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+<polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+</svg>
+                                Filters &amp;Sort
+
+</span>
+<span class="FilterDropdownPanel__Summary" id="FilterSummaryText" aria-live="polite"></span>
+<button class="FilterDropdownPanel__CloseBtn" id="CloseFilterPanelBtn" aria-label="Close filter panel" title="Close (Esc)">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<line x1="18" y1="6" x2="6" y2="18"></line>
+<line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="FilterOptionsGrid" id="FilterOptionsGrid">
+<div class="FilterOptionGroup" data-filter-dimension="semester">
+<label class="FilterOptionGroup__Label" for="SemesterFilter" id="SemesterFilterLabel">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<line x1="18" y1="20" x2="18" y2="10"></line>
+<line x1="12" y1="20" x2="12" y2="4"></line>
+<line x1="6" y1="20" x2="6" y2="14"></line>
+</svg>
+                                    Semester
+
+</label>
+<select class="FilterOptionGroup__Select" id="SemesterFilter" name="semester" aria-labelledby="SemesterFilterLabel" data-filter-key="semester" data-sync-key="semester">
+<option value="">All Semesters</option>
+</select>
+</div>
+<div class="FilterOptionGroup" data-filter-dimension="stream">
+<label class="FilterOptionGroup__Label" for="StreamFilter" id="StreamFilterLabel">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+<polyline points="2 17 12 22 22 17"></polyline>
+<polyline points="2 12 12 17 22 12"></polyline>
+</svg>
+                                    Stream
+
+</label>
+<select class="FilterOptionGroup__Select" id="StreamFilter" name="stream" aria-labelledby="StreamFilterLabel" data-filter-key="stream" data-sync-key="stream" data-sync-target="StreamPillsRow">
+<option value="">All Streams</option>
+</select>
+</div>
+<div class="FilterOptionGroup" data-filter-dimension="course">
+<label class="FilterOptionGroup__Label" for="CourseFilter" id="CourseFilterLabel">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"></path>
+</svg>
+                                    Course
+
+</label>
+<select class="FilterOptionGroup__Select" id="CourseFilter" name="course" aria-labelledby="CourseFilterLabel" data-filter-key="course" data-sync-key="course">
+<option value="">All Courses</option>
+</select>
+</div>
+<div class="FilterOptionGroup" data-filter-dimension="subject">
+<label class="FilterOptionGroup__Label" for="SubjectFilter" id="SubjectFilterLabel">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M4 19.5A2.5 2.5 0 016.5 17H20"></path>
+<path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"></path>
+</svg>
+                                    Subject
+
+</label>
+<select class="FilterOptionGroup__Select" id="SubjectFilter" name="subject" aria-labelledby="SubjectFilterLabel" data-filter-key="subject" data-sync-key="subject">
+<option value="">All Subjects</option>
+</select>
+</div>
+<div class="FilterOptionGroup" data-filter-dimension="year">
+<label class="FilterOptionGroup__Label" for="YearFilter" id="YearFilterLabel">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+<line x1="16" y1="2" x2="16" y2="6"></line>
+<line x1="8" y1="2" x2="8" y2="6"></line>
+<line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+                                    Year
+
+</label>
+<select class="FilterOptionGroup__Select" id="YearFilter" name="year" aria-labelledby="YearFilterLabel" data-filter-key="year" data-sync-key="year">
+<option value="">All Years</option>
+</select>
+</div>
+<div class="FilterOptionGroup" data-filter-dimension="author">
+<label class="FilterOptionGroup__Label" for="AuthorFilter" id="AuthorFilterLabel">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+<circle cx="12" cy="7" r="4"></circle>
+</svg>
+                                    Author
+
+</label>
+<select class="FilterOptionGroup__Select" id="AuthorFilter" name="author" aria-labelledby="AuthorFilterLabel" data-filter-key="author" data-sync-key="author">
+<option value="">All Authors</option>
+</select>
+</div>
+</div>
+<div class="FilterDropdownPanel__Actions" id="FilterPanelActions">
+<div class="SortButtonGroup" id="SortButtonGroup" role="radiogroup" aria-label="Sort notes by">
+<button class="SortButton" data-sort-key="semester" role="radio" aria-checked="false" title="Sort by semester">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<line x1="18" y1="20" x2="18" y2="10"></line>
+<line x1="12" y1="20" x2="12" y2="4"></line>
+<line x1="6" y1="20" x2="6" y2="14"></line>
+</svg>
+                                    Sem
+
+<span class="SortButton__DirectionArrow" aria-hidden="true" style="display:none;">
+<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+<polyline points="18 15 12 9 6 15"></polyline>
+</svg>
+</span>
+</button>
+<button class="SortButton" data-sort-key="course" role="radio" aria-checked="false" title="Sort by course">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"></path>
+</svg>
+                                    Course
+
+<span class="SortButton__DirectionArrow" aria-hidden="true" style="display:none;">
+<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+<polyline points="18 15 12 9 6 15"></polyline>
+</svg>
+</span>
+</button>
+<button class="SortButton" data-sort-key="year" role="radio" aria-checked="false" title="Sort by year">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+<line x1="16" y1="2" x2="16" y2="6"></line>
+<line x1="8" y1="2" x2="8" y2="6"></line>
+<line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+                                    Year
+
+<span class="SortButton__DirectionArrow" aria-hidden="true" style="display:none;">
+<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+<polyline points="18 15 12 9 6 15"></polyline>
+</svg>
+</span>
+</button>
+<button class="SortButton" data-sort-key="title" role="radio" aria-checked="false" title="Sort A-Z">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<polyline points="11 5 6 9 1 5"></polyline>
+<line x1="6" y1="9" x2="6" y2="15"></line>
+</svg>
+                                    A-Z
+
+<span class="SortButton__DirectionArrow" aria-hidden="true" style="display:none;">
+<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+<polyline points="18 15 12 9 6 15"></polyline>
+</svg>
+</span>
+</button>
+<button class="SortButton" data-sort-key="topics" role="radio" aria-checked="false" title="Sort by topic count">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<line x1="8" y1="6" x2="21" y2="6"></line>
+<line x1="8" y1="12" x2="21" y2="12"></line>
+<line x1="8" y1="18" x2="21" y2="18"></line>
+<line x1="3" y1="6" x2="3.01" y2="6"></line>
+<line x1="3" y1="12" x2="3.01" y2="12"></line>
+<line x1="3" y1="18" x2="3.01" y2="18"></line>
+</svg>
+                                    Topics
+
+<span class="SortButton__DirectionArrow" aria-hidden="true" style="display:none;">
+<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+<polyline points="18 15 12 9 6 15"></polyline>
+</svg>
+</span>
+</button>
+</div>
+<button class="ResetAllFiltersBtn" id="ResetAllFiltersBtn" aria-label="Reset all filters" title="Reset all">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<polyline points="1 4 1 10 7 10"></polyline>
+<path d="M3.51 15a9 9 0 102.13-9.36L1 10"></path>
+</svg>
+                                Reset
+
+</button>
+</div>
+</div>
+</div>
+</div>
+<section class="ResultsToolbar" id="ResultsToolbar" aria-label="Results toolbar">
+<div class="ResultsToolbar__TopRow" id="ToolbarTopRow">
+<div class="ResultsToolbar__Left" id="ToolbarLeft">
+<span class="ResultsToolbar__Count" id="FilteredResultsCount" aria-live="polite" aria-atomic="true"></span>
+<div class="ActiveFilterChips" id="ActiveFilterChips" role="list" aria-label="Active filters"></div>
+</div>
+<div class="ResultsToolbar__Right" id="ToolbarRight">
+<div class="ToolbarQuickActions">
+<button class="ToolbarQuickAction" id="ExportResultsButton" aria-label="Export results" title="Export CSV">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+<polyline points="17 8 12 3 7 8"></polyline>
+<line x1="12" y1="3" x2="12" y2="15"></line>
+</svg>
+</button>
+<button class="ToolbarQuickAction" id="ShareResultsButton" aria-label="Share" title="Share">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<circle cx="18" cy="5" r="3"></circle>
+<circle cx="6" cy="12" r="3"></circle>
+<circle cx="18" cy="19" r="3"></circle>
+<line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+<line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+</svg>
+</button>
+</div>
+<div class="ViewSwitcher" id="ViewSwitcher" role="radiogroup" aria-label="View mode">
+<button class="ViewSwitcher__Button ViewSwitcher__Button--Active" data-view-mode="grid" role="radio" aria-checked="true" aria-label="Grid view" title="Grid (G)">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<rect x="3" y="3" width="7" height="7"></rect>
+<rect x="14" y="3" width="7" height="7"></rect>
+<rect x="14" y="14" width="7" height="7"></rect>
+<rect x="3" y="14" width="7" height="7"></rect>
+</svg>
+</button>
+<button class="ViewSwitcher__Button" data-view-mode="list" role="radio" aria-checked="false" aria-label="List view" title="List (L)">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<line x1="8" y1="6" x2="21" y2="6"></line>
+<line x1="8" y1="12" x2="21" y2="12"></line>
+<line x1="8" y1="18" x2="21" y2="18"></line>
+<line x1="3" y1="6" x2="3.01" y2="6"></line>
+<line x1="3" y1="12" x2="3.01" y2="12"></line>
+<line x1="3" y1="18" x2="3.01" y2="18"></line>
+</svg>
+</button>
+<button class="ViewSwitcher__Button" data-view-mode="compact" role="radio" aria-checked="false" aria-label="Compact view" title="Compact (C)">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<rect x="3" y="3" width="18" height="4"></rect>
+<rect x="3" y="10" width="18" height="4"></rect>
+<rect x="3" y="17" width="18" height="4"></rect>
+</svg>
+</button>
+</div>
+</div>
+</div>
+<div class="TabsNavigation" id="TabsNavigation" role="tablist" aria-label="Notes categories">
+<button class="TabButton TabButton--Active" data-tab-name="all" role="tab" aria-selected="true" aria-controls="NotesGrid" id="TabAllNotes" tabindex="0">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+<polyline points="14 2 14 8 20 8"></polyline>
+</svg>
+                        All Notes
+<span class="TabButton__Count" id="AllNotesTabCount">0</span>
+</button>
+<button class="TabButton" data-tab-name="bookmarks" role="tab" aria-selected="false" aria-controls="NotesGrid" id="TabBookmarks" tabindex="-1">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"></path>
+</svg>
+                        Bookmarks
+<span class="TabButton__Count" id="BookmarksTabCount">0</span>
+</button>
+<button class="TabButton" data-tab-name="contributed" role="tab" aria-selected="false" aria-controls="NotesGrid" id="TabContributed" tabindex="-1">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<line x1="12" y1="5" x2="12" y2="19"></line>
+<line x1="5" y1="12" x2="19" y2="12"></line>
+</svg>
+                        My Notes
+<span class="TabButton__Count" id="ContributedTabCount">0</span>
+</button>
+<button class="TabButton" data-tab-name="recent" role="tab" aria-selected="false" aria-controls="NotesGrid" id="TabRecent" tabindex="-1">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<circle cx="12" cy="12" r="10"></circle>
+<polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+                        Recent
+<span class="TabButton__Count" id="RecentTabCount">0</span>
+</button>
+</div>
+</section>
+<main class="MainContentArea" id="MainContentArea" role="main" aria-label="Notes collection">
+<div class="SkeletonLoaderGrid" id="SkeletonLoaderGrid" aria-hidden="true" role="presentation" style="display:none;">
+<div class="SkeletonNoteCard">
+<div class="SkeletonNoteCard__Accent"></div>
+<div class="SkeletonNoteCard__Body">
+<div class="SkeletonNoteCard__Badges">
+<div class="SkeletonBlock SkeletonBlock--Badge"></div>
+<div class="SkeletonBlock SkeletonBlock--Badge"></div>
+<div class="SkeletonBlock SkeletonBlock--BadgeSm"></div>
+</div>
+<div class="SkeletonBlock SkeletonBlock--Title"></div>
+<div class="SkeletonBlock SkeletonBlock--TitleShort"></div>
+<div class="SkeletonNoteCard__Tags">
+<div class="SkeletonBlock SkeletonBlock--Tag"></div>
+<div class="SkeletonBlock SkeletonBlock--Tag"></div>
+<div class="SkeletonBlock SkeletonBlock--Tag"></div>
+</div>
+</div>
+<div class="SkeletonNoteCard__Footer">
+<div class="SkeletonBlock SkeletonBlock--Info"></div>
+<div class="SkeletonBlock SkeletonBlock--Button"></div>
+</div>
+</div>
+<div class="SkeletonNoteCard">
+<div class="SkeletonNoteCard__Accent"></div>
+<div class="SkeletonNoteCard__Body">
+<div class="SkeletonNoteCard__Badges">
+<div class="SkeletonBlock SkeletonBlock--Badge"></div>
+<div class="SkeletonBlock SkeletonBlock--Badge"></div>
+</div>
+<div class="SkeletonBlock SkeletonBlock--Title"></div>
+<div class="SkeletonNoteCard__Tags">
+<div class="SkeletonBlock SkeletonBlock--Tag"></div>
+<div class="SkeletonBlock SkeletonBlock--Tag"></div>
+</div>
+</div>
+<div class="SkeletonNoteCard__Footer">
+<div class="SkeletonBlock SkeletonBlock--Info"></div>
+<div class="SkeletonBlock SkeletonBlock--Button"></div>
+</div>
+</div>
+<div class="SkeletonNoteCard">
+<div class="SkeletonNoteCard__Accent"></div>
+<div class="SkeletonNoteCard__Body">
+<div class="SkeletonNoteCard__Badges">
+<div class="SkeletonBlock SkeletonBlock--Badge"></div>
+<div class="SkeletonBlock SkeletonBlock--Badge"></div>
+<div class="SkeletonBlock SkeletonBlock--BadgeSm"></div>
+</div>
+<div class="SkeletonBlock SkeletonBlock--Title"></div>
+<div class="SkeletonBlock SkeletonBlock--TitleShort"></div>
+<div class="SkeletonNoteCard__Tags">
+<div class="SkeletonBlock SkeletonBlock--Tag"></div>
+<div class="SkeletonBlock SkeletonBlock--Tag"></div>
+<div class="SkeletonBlock SkeletonBlock--Tag"></div>
+<div class="SkeletonBlock SkeletonBlock--Tag"></div>
+</div>
+</div>
+<div class="SkeletonNoteCard__Footer">
+<div class="SkeletonBlock SkeletonBlock--Info"></div>
+<div class="SkeletonBlock SkeletonBlock--Button"></div>
+</div>
+</div>
+<div class="SkeletonNoteCard">
+<div class="SkeletonNoteCard__Accent"></div>
+<div class="SkeletonNoteCard__Body">
+<div class="SkeletonNoteCard__Badges">
+<div class="SkeletonBlock SkeletonBlock--Badge"></div>
+<div class="SkeletonBlock SkeletonBlock--Badge"></div>
+</div>
+<div class="SkeletonBlock SkeletonBlock--Title"></div>
+<div class="SkeletonNoteCard__Tags">
+<div class="SkeletonBlock SkeletonBlock--Tag"></div>
+<div class="SkeletonBlock SkeletonBlock--Tag"></div>
+<div class="SkeletonBlock SkeletonBlock--Tag"></div>
+</div>
+</div>
+<div class="SkeletonNoteCard__Footer">
+<div class="SkeletonBlock SkeletonBlock--Info"></div>
+<div class="SkeletonBlock SkeletonBlock--Button"></div>
+</div>
+</div>
+<div class="SkeletonNoteCard">
+<div class="SkeletonNoteCard__Accent"></div>
+<div class="SkeletonNoteCard__Body">
+<div class="SkeletonNoteCard__Badges">
+<div class="SkeletonBlock SkeletonBlock--Badge"></div>
+<div class="SkeletonBlock SkeletonBlock--Badge"></div>
+<div class="SkeletonBlock SkeletonBlock--BadgeSm"></div>
+</div>
+<div class="SkeletonBlock SkeletonBlock--Title"></div>
+<div class="SkeletonNoteCard__Tags">
+<div class="SkeletonBlock SkeletonBlock--Tag"></div>
+<div class="SkeletonBlock SkeletonBlock--Tag"></div>
+</div>
+</div>
+<div class="SkeletonNoteCard__Footer">
+<div class="SkeletonBlock SkeletonBlock--Info"></div>
+<div class="SkeletonBlock SkeletonBlock--Button"></div>
+</div>
+</div>
+<div class="SkeletonNoteCard">
+<div class="SkeletonNoteCard__Accent"></div>
+<div class="SkeletonNoteCard__Body">
+<div class="SkeletonNoteCard__Badges">
+<div class="SkeletonBlock SkeletonBlock--Badge"></div>
+<div class="SkeletonBlock SkeletonBlock--Badge"></div>
+</div>
+<div class="SkeletonBlock SkeletonBlock--Title"></div>
+<div class="SkeletonBlock SkeletonBlock--TitleShort"></div>
+<div class="SkeletonNoteCard__Tags">
+<div class="SkeletonBlock SkeletonBlock--Tag"></div>
+<div class="SkeletonBlock SkeletonBlock--Tag"></div>
+<div class="SkeletonBlock SkeletonBlock--Tag"></div>
+</div>
+</div>
+<div class="SkeletonNoteCard__Footer">
+<div class="SkeletonBlock SkeletonBlock--Info"></div>
+<div class="SkeletonBlock SkeletonBlock--Button"></div>
+</div>
+</div>
+</div>
+<div class="NotesGrid" id="NotesGrid" role="feed" aria-label="Notes list" aria-live="polite" aria-relevant="additions removals" aria-busy="false" data-current-view="grid" data-page-size="12" data-current-page="1"></div>
+<div class="EmptyState" id="EmptyState" role="status" aria-live="polite">
+<div class="EmptyState__Illustration" aria-hidden="true">
+<svg width="140" height="140" viewBox="0 0 140 140" fill="none">
+<circle cx="70" cy="70" r="60" fill="var(--bg-secondary)" stroke="var(--border)" stroke-width="2" opacity="0.8"></circle>
+<circle cx="65" cy="58" r="22" fill="none" stroke="var(--text-faint)" stroke-width="3" stroke-dasharray="4 3"></circle>
+<line x1="81" y1="74" x2="100" y2="93" stroke="var(--text-faint)" stroke-width="3" stroke-linecap="round"></line>
+<line x1="56" y1="54" x2="74" y2="54" stroke="var(--text-faint)" stroke-width="2" stroke-linecap="round" opacity="0.5"></line>
+<line x1="56" y1="61" x2="74" y2="61" stroke="var(--text-faint)" stroke-width="2" stroke-linecap="round" opacity="0.5"></line>
+<circle cx="45" cy="100" r="5" fill="var(--primary-glow)" opacity="0.6"></circle>
+<circle cx="95" cy="35" r="4" fill="var(--primary-glow)" opacity="0.5"></circle>
+<circle cx="30" cy="45" r="3" fill="var(--primary-glow)" opacity="0.4"></circle>
+<rect x="88" y="88" width="8" height="8" rx="2" fill="var(--primary-glow)" opacity="0.3" transform="rotate(15 92 92)"></rect>
+</svg>
+</div>
+<h3 class="EmptyState__Title">No notes found</h3>
+<p class="EmptyState__Description">Try adjusting your search or filters. You can also contribute your own notes!</p>
+<div class="EmptyState__Actions">
+<button class="EmptyState__PrimaryBtn" id="EmptyStateClearFilters" aria-label="Clear all filters">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<polyline points="1 4 1 10 7 10"></polyline>
+<path d="M3.51 15a9 9 0 102.13-9.36L1 10"></path>
+</svg>
+                            Clear filters
+
+</button>
+<button class="EmptyState__SecondaryBtn" id="EmptyStateContribute" aria-label="Contribute a note">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<line x1="12" y1="5" x2="12" y2="19"></line>
+<line x1="5" y1="12" x2="19" y2="12"></line>
+</svg>
+                            Contribute Note
+
+</button>
+</div>
+<div class="EmptyState__Suggestions" id="EmptyStateSuggestions" style="display:none;">
+<p class="EmptyState__SuggestionsLabel">Did you mean:</p>
+<div class="EmptyState__SuggestionsList" id="EmptyStateSuggestionsList"></div>
+</div>
+</div>
+<div class="LoadMoreSection" id="LoadMoreSection" style="display:none;">
+<button class="LoadMoreButton" id="LoadMoreButton" aria-label="Load more notes">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="LoadMoreButton__Icon">
+<polyline points="7 13 12 18 17 13"></polyline>
+<polyline points="7 6 12 11 17 6"></polyline>
+</svg>
+<span class="LoadMoreButton__Text">Load More Notes</span>
+<span class="LoadMoreButton__Spinner" id="LoadMoreSpinner" aria-hidden="true" style="display:none;">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+<path d="M12 2a10 10 0 0110 10"></path>
+</svg>
+</span>
+</button>
+<p class="LoadMoreSection__Info" id="PaginationInfoText" aria-live="polite"></p>
+</div>
+</main>
+<footer class="AppFooter" id="AppFooter" role="contentinfo" aria-label="Site footer">
+<div class="AppFooter__Inner">
+<div class="AppFooter__Brand">
+<span class="AppFooter__Logo" aria-hidden="true">📚</span>
+<span class="AppFooter__LogoText">NoteVault</span>
+<span class="AppFooter__VersionTag">v1.0</span>
+</div>
+<p class="AppFooter__Credits">
+                        Designed &amp;Developed by <strong>Project K</strong>
+&nbsp;with <span class="AppFooter__Heart" aria-label="love">❤️</span>
+                        for students everywhere.
+&copy;<span id="FooterCurrentYear">2025</span>
+</p>
+<p class="AppFooter__DevInfo">Version 1.0 &bull;Development: March 2026
+</p>
+<nav class="AppFooter__Links" aria-label="Footer navigation">
+<a href="#about" class="AppFooter__Link" id="FooterLinkAbout">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<circle cx="12" cy="12" r="10"></circle>
+<line x1="12" y1="16" x2="12" y2="12"></line>
+<line x1="12" y1="8" x2="12.01" y2="8"></line>
+</svg>
+                            About Us
+
+</a>
+<a href="#privacy" class="AppFooter__Link" id="FooterLinkPrivacy">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+</svg>
+                            Privacy &amp;Security
+
+</a>
+<a href="#contribute" class="AppFooter__Link" id="FooterLinkContribute">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<line x1="12" y1="5" x2="12" y2="19"></line>
+<line x1="5" y1="12" x2="19" y2="12"></line>
+</svg>
+                            Contribute
+
+</a>
+<a href="#shortcuts" class="AppFooter__Link" id="FooterLinkShortcuts">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<rect x="2" y="4" width="20" height="16" rx="2"></rect>
+<path d="M7 16h10"></path>
+</svg>
+                            Shortcuts
+
+</a>
+</nav>
+<div class="AppFooter__Socials" aria-label="Social links">
+<a href="https://github.com/project-k" class="AppFooter__SocialIcon" aria-label="GitHub" title="GitHub" target="_blank" rel="noopener noreferrer">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+</svg>
+</a>
+</div>
+<p class="AppFooter__Version">
+<small>Version 1.0.0 &bull;March 2026 &bull;Built with Trie, HashMap, MergeSort &amp;OOP Patterns by Project K</small>
+</p>
+</div>
+</footer>
+</div>
+<div class="ModalOverlay" id="NoteDetailModalOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="NoteDetailModalTitle" tabindex="-1">
+<div class="ModalContainer ModalContainer--NoteDetail" id="NoteDetailModal" role="document">
+<div class="ModalContainer__Header">
+<div class="ModalContainer__Badges" id="NoteDetailBadges"></div>
+<button class="ModalContainer__CloseBtn" id="CloseNoteDetailModal" aria-label="Close">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<line x1="18" y1="6" x2="6" y2="18"></line>
+<line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="ModalContainer__Body">
+<h2 class="ModalContainer__Title" id="NoteDetailModalTitle"></h2>
+<div class="NoteDetailModal__SubjectBadge" id="NoteDetailSubjectBadge"></div>
+<div class="NoteDetailModal__TopicsList" id="NoteDetailTopicsList">
+<h4 class="NoteDetailModal__SectionTitle">Topics Covered</h4>
+<div class="NoteDetailModal__TopicsGrid" id="NoteDetailTopicsGrid"></div>
+</div>
+<div class="NoteDetailModal__StatsGrid" id="NoteDetailStatsGrid">
+<div class="NoteDetailModal__StatItem">
+<span class="NoteDetailModal__StatIcon">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+<polyline points="14 2 14 8 20 8"></polyline>
+</svg>
+</span>
+<span class="NoteDetailModal__StatLabel">Type</span>
+<span class="NoteDetailModal__StatValue" id="NoteDetailFileType"></span>
+</div>
+<div class="NoteDetailModal__StatItem">
+<span class="NoteDetailModal__StatIcon">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+<polyline points="7 10 12 15 17 10"></polyline>
+<line x1="12" y1="15" x2="12" y2="3"></line>
+</svg>
+</span>
+<span class="NoteDetailModal__StatLabel">Size</span>
+<span class="NoteDetailModal__StatValue" id="NoteDetailFileSize"></span>
+</div>
+<div class="NoteDetailModal__StatItem">
+<span class="NoteDetailModal__StatIcon">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M4 19.5A2.5 2.5 0 016.5 17H20"></path>
+<path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"></path>
+</svg>
+</span>
+<span class="NoteDetailModal__StatLabel">Pages</span>
+<span class="NoteDetailModal__StatValue" id="NoteDetailPageCount"></span>
+</div>
+<div class="NoteDetailModal__StatItem">
+<span class="NoteDetailModal__StatIcon">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+<circle cx="12" cy="7" r="4"></circle>
+</svg>
+</span>
+<span class="NoteDetailModal__StatLabel">Author</span>
+<span class="NoteDetailModal__StatValue" id="NoteDetailAuthor"></span>
+</div>
+<div class="NoteDetailModal__StatItem">
+<span class="NoteDetailModal__StatIcon">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+<polyline points="2 17 12 22 22 17"></polyline>
+<polyline points="2 12 12 17 22 12"></polyline>
+</svg>
+</span>
+<span class="NoteDetailModal__StatLabel">Stream</span>
+<span class="NoteDetailModal__StatValue" id="NoteDetailStream"></span>
+</div>
+<div class="NoteDetailModal__StatItem">
+<span class="NoteDetailModal__StatIcon">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<rect x="3" y="4" width="18" height="18" rx="2"></rect>
+<line x1="16" y1="2" x2="16" y2="6"></line>
+<line x1="8" y1="2" x2="8" y2="6"></line>
+<line x1="3" y1="10" x2="21" y2="10"></line>
+</svg>
+</span>
+<span class="NoteDetailModal__StatLabel">Year / Sem</span>
+<span class="NoteDetailModal__StatValue" id="NoteDetailYearSemester"></span>
+</div>
+<div class="NoteDetailModal__StatItem">
+<span class="NoteDetailModal__StatIcon">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"></path>
+<path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"></path>
+</svg>
+</span>
+<span class="NoteDetailModal__StatLabel">Source</span>
+<span class="NoteDetailModal__StatValue" id="NoteDetailSource"></span>
+</div>
+</div>
+<div class="NoteDetailModal__Actions" id="NoteDetailActions">
+<button class="DownloadNoteButton DownloadNoteButton--Large" id="NoteDetailDownloadBtn" data-note-id="">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+<polyline points="7 10 12 15 17 10"></polyline>
+<line x1="12" y1="15" x2="12" y2="3"></line>
+</svg>
+<span class="DownloadNoteButton__Label">Download PDF</span>
+</button>
+<button class="BookmarkNoteButton BookmarkNoteButton--Modal" id="NoteDetailBookmarkBtn" data-note-id="">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"></path>
+</svg>
+<span class="BookmarkNoteButton__Label">Bookmark</span>
+</button>
+<button class="ShareNoteButton" id="NoteDetailShareBtn" data-note-id="">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<circle cx="18" cy="5" r="3"></circle>
+<circle cx="6" cy="12" r="3"></circle>
+<circle cx="18" cy="19" r="3"></circle>
+<line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+<line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+</svg>
+<span class="ShareNoteButton__Label">Share</span>
+</button>
+</div>
+<div class="NoteDetailModal__RelatedSection" id="NoteDetailRelated" style="display:none;">
+<h4 class="NoteDetailModal__SectionTitle">Related Notes</h4>
+<div class="NoteDetailModal__RelatedList" id="NoteDetailRelatedList"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="ModalOverlay" id="ContributionModalOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="ContributionModalTitle" tabindex="-1">
+<div class="ModalContainer ModalContainer--Contribution" id="ContributionModal" role="document">
+<div class="ModalContainer__Header">
+<h2 class="ModalContainer__Title" id="ContributionModalTitle">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<line x1="12" y1="5" x2="12" y2="19"></line>
+<line x1="5" y1="12" x2="19" y2="12"></line>
+</svg>
+                        Contribute a Note
+
+</h2>
+<button class="ModalContainer__CloseBtn" id="CloseContributionModal" aria-label="Close">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<line x1="18" y1="6" x2="6" y2="18"></line>
+<line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="ModalContainer__Body">
+<div class="ContributionForm__StorageNotice" id="ContributionStorageNotice">
+<div class="ContributionForm__StorageNoticeIcon" aria-hidden="true">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<circle cx="12" cy="12" r="10"></circle>
+<line x1="12" y1="16" x2="12" y2="12"></line>
+<line x1="12" y1="8" x2="12.01" y2="8"></line>
+</svg>
+</div>
+<p class="ContributionForm__StorageNoticeText">
+<strong>Local Storage Only:</strong>
+                            Your uploaded files are stored locally in your browser using IndexedDB. Files are never uploaded to any server. Clearing browser data will remove stored files.
+
+</p>
+</div>
+<form class="ContributionForm" id="ContributionForm" novalidate>
+<div class="ContributionForm__Row">
+<div class="FormField">
+<label class="FormField__Label" for="ContributeNoteTitle">
+                                    Note Title <span class="FormField__Required">*</span>
+</label>
+<input type="text" class="FormField__Input" id="ContributeNoteTitle" name="title" placeholder="e.g. Data Structures & Algorithms" required maxlength="100" autocomplete="off">
+<span class="FormField__Error" id="ContributeNoteTitleError"></span>
+</div>
+</div>
+<div class="ContributionForm__Row ContributionForm__Row--TwoCol">
+<div class="FormField">
+<label class="FormField__Label" for="ContributeStream">
+                                    Stream <span class="FormField__Required">*</span>
+</label>
+<select class="FormField__Select" id="ContributeStream" name="stream" required>
+<option value="">Select Stream</option>
+<option value="Engineering">⚙️ Engineering</option>
+<option value="Science">🔬 Science</option>
+<option value="Commerce">💼 Commerce</option>
+<option value="Arts">🎨 Arts</option>
+<option value="Medical">🏥 Medical</option>
+</select>
+<span class="FormField__Error" id="ContributeStreamError"></span>
+</div>
+<div class="FormField">
+<label class="FormField__Label" for="ContributeCourse">
+                                    Course <span class="FormField__Required">*</span>
+</label>
+<input type="text" class="FormField__Input" id="ContributeCourse" name="course" placeholder="e.g. B.Tech CSE" required maxlength="50" autocomplete="off">
+<span class="FormField__Error" id="ContributeCourseError"></span>
+</div>
+</div>
+<div class="ContributionForm__Row ContributionForm__Row--ThreeCol">
+<div class="FormField">
+<label class="FormField__Label" for="ContributeYear">
+                                    Year <span class="FormField__Required">*</span>
+</label>
+<select class="FormField__Select" id="ContributeYear" name="year" required>
+<option value="">Year</option>
+<option value="1">Year 1</option>
+<option value="2">Year 2</option>
+<option value="3">Year 3</option>
+<option value="4">Year 4</option>
+<option value="5">Year 5</option>
+</select>
+<span class="FormField__Error" id="ContributeYearError"></span>
+</div>
+<div class="FormField">
+<label class="FormField__Label" for="ContributeSemester">
+                                    Semester <span class="FormField__Required">*</span>
+</label>
+<select class="FormField__Select" id="ContributeSemester" name="semester" required>
+<option value="">Sem</option>
+<option value="1">Sem 1</option>
+<option value="2">Sem 2</option>
+<option value="3">Sem 3</option>
+<option value="4">Sem 4</option>
+<option value="5">Sem 5</option>
+<option value="6">Sem 6</option>
+<option value="7">Sem 7</option>
+<option value="8">Sem 8</option>
+</select>
+<span class="FormField__Error" id="ContributeSemesterError"></span>
+</div>
+<div class="FormField">
+<label class="FormField__Label" for="ContributePages">Pages</label>
+<input type="number" class="FormField__Input" id="ContributePages" name="pages" placeholder="e.g. 120" min="1" max="9999">
+</div>
+</div>
+<div class="ContributionForm__Row">
+<div class="FormField">
+<label class="FormField__Label" for="ContributeSubject">
+                                    Subject <span class="FormField__Required">*</span>
+</label>
+<input type="text" class="FormField__Input" id="ContributeSubject" name="subject" placeholder="e.g. Data Structures" required maxlength="80" autocomplete="off">
+<span class="FormField__Error" id="ContributeSubjectError"></span>
+</div>
+</div>
+<div class="ContributionForm__Row">
+<div class="FormField">
+<label class="FormField__Label" for="ContributeTopics">
+                                    Topics <span class="FormField__Hint">(comma separated)</span>
+<span class="FormField__Required">*</span>
+</label>
+<textarea class="FormField__Textarea" id="ContributeTopics" name="topics" placeholder="e.g. Arrays, Linked Lists, Trees, Graphs, Sorting, Searching" required rows="3" maxlength="500"></textarea>
+<span class="FormField__Counter" id="ContributeTopicsCounter">0 topics</span>
+<span class="FormField__Error" id="ContributeTopicsError"></span>
+</div>
+</div>
+<div class="ContributionForm__Row">
+<div class="FormField">
+<label class="FormField__Label" for="ContributeTopicsPreview">Topics Preview</label>
+<div class="ContributionForm__TopicsPreview" id="ContributeTopicsPreview" aria-live="polite"></div>
+</div>
+</div>
+<div class="ContributionForm__Row ContributionForm__Row--TwoCol">
+<div class="FormField">
+<label class="FormField__Label" for="ContributeAuthor">
+                                    Author Name <span class="FormField__Required">*</span>
+</label>
+<input type="text" class="FormField__Input" id="ContributeAuthor" name="author" placeholder="e.g. Prof. Sharma" required maxlength="60" autocomplete="off">
+<span class="FormField__Error" id="ContributeAuthorError"></span>
+</div>
+<div class="FormField">
+<label class="FormField__Label" for="ContributeFileSize">File Size</label>
+<input type="text" class="FormField__Input" id="ContributeFileSize" name="fileSize" placeholder="e.g. 2.4 MB" maxlength="20">
+</div>
+</div>
+<div class="ContributionForm__Row">
+<div class="FormField">
+<label class="FormField__Label" for="ContributeFile">
+                                    Upload File <span class="FormField__Required">*</span>
+<span class="FormField__Hint">(PDF, DOC, DOCX, PPT, TXT — stored locally in browser)</span>
+</label>
+<div class="FileUploadArea" id="FileUploadArea" tabindex="0" role="button" aria-label="Click or drag to upload file">
+<input type="file" class="FileUploadArea__Input" id="ContributeFile" name="file" accept=".pdf,.doc,.docx,.ppt,.pptx,.txt,.xlsx,.xls" required>
+<div class="FileUploadArea__Content" id="FileUploadContent">
+<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--text-faint)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+<polyline points="17 8 12 3 7 8"></polyline>
+<line x1="12" y1="3" x2="12" y2="15"></line>
+</svg>
+<span class="FileUploadArea__Text">Click to browse or drag &amp;drop your file here</span>
+<span class="FileUploadArea__Hint">Max size: 50 MB — Stored locally in your browser only</span>
+</div>
+<div class="FileUploadArea__Preview" id="FileUploadPreview" style="display:none;">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2">
+<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+<polyline points="14 2 14 8 20 8"></polyline>
+</svg>
+<div class="FileUploadArea__FileInfo">
+<span class="FileUploadArea__FileName" id="UploadedFileName"></span>
+<span class="FileUploadArea__FileSize" id="UploadedFileSize"></span>
+</div>
+<button type="button" class="FileUploadArea__RemoveBtn" id="RemoveUploadedFile" aria-label="Remove file">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+<line x1="18" y1="6" x2="6" y2="18"></line>
+<line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+</button>
+</div>
+</div>
+<span class="FormField__Error" id="ContributeFileError"></span>
+</div>
+</div>
+<div class="ContributionForm__Actions">
+<button type="button" class="ContributionForm__CancelBtn" id="CancelContributionBtn">Cancel</button>
+<button type="submit" class="ContributionForm__SubmitBtn" id="SubmitContributionBtn">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+<line x1="12" y1="5" x2="12" y2="19"></line>
+<line x1="5" y1="12" x2="19" y2="12"></line>
+</svg>
+                                Add Note
+
+</button>
+</div>
+</form>
+</div>
+</div>
+</div>
+<div class="ModalOverlay" id="KeyboardShortcutsModalOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="KeyboardShortcutsTitle" tabindex="-1">
+<div class="ModalContainer ModalContainer--Shortcuts" id="KeyboardShortcutsModal">
+<div class="ModalContainer__Header">
+<h2 class="ModalContainer__Title" id="KeyboardShortcutsTitle">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<rect x="2" y="4" width="20" height="16" rx="2"></rect>
+<path d="M7 16h10"></path>
+</svg>
+                        Keyboard Shortcuts
+
+</h2>
+<button class="ModalContainer__CloseBtn" id="CloseShortcutsModal" aria-label="Close">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+<line x1="18" y1="6" x2="6" y2="18"></line>
+<line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="ModalContainer__Body ShortcutsModalBody">
+<div class="ShortcutCategory">
+<h3 class="ShortcutCategory__Title">Navigation</h3>
+<div class="ShortcutRow">
+<div class="ShortcutRow__Keys">
+<kbd>/</kbd>
+</div>
+<span class="ShortcutRow__Desc">Focus search bar</span>
+</div>
+<div class="ShortcutRow">
+<div class="ShortcutRow__Keys">
+<kbd>Esc</kbd>
+</div>
+<span class="ShortcutRow__Desc">Close modal / panel / search</span>
+</div>
+<div class="ShortcutRow">
+<div class="ShortcutRow__Keys">
+<kbd>↑</kbd>
+<kbd>↓</kbd>
+</div>
+<span class="ShortcutRow__Desc">Navigate suggestions</span>
+</div>
+<div class="ShortcutRow">
+<div class="ShortcutRow__Keys">
+<kbd>Enter</kbd>
+</div>
+<span class="ShortcutRow__Desc">Select suggestion</span>
+</div>
+<div class="ShortcutRow">
+<div class="ShortcutRow__Keys">
+<kbd>Home</kbd>
+</div>
+<span class="ShortcutRow__Desc">Scroll to top</span>
+</div>
+<div class="ShortcutRow">
+<div class="ShortcutRow__Keys">
+<kbd>End</kbd>
+</div>
+<span class="ShortcutRow__Desc">Scroll to bottom</span>
+</div>
+</div>
+<div class="ShortcutCategory">
+<h3 class="ShortcutCategory__Title">View &amp;Display</h3>
+<div class="ShortcutRow">
+<div class="ShortcutRow__Keys">
+<kbd>T</kbd>
+</div>
+<span class="ShortcutRow__Desc">Toggle theme</span>
+</div>
+<div class="ShortcutRow">
+<div class="ShortcutRow__Keys">
+<kbd>G</kbd>
+</div>
+<span class="ShortcutRow__Desc">Grid view</span>
+</div>
+<div class="ShortcutRow">
+<div class="ShortcutRow__Keys">
+<kbd>L</kbd>
+</div>
+<span class="ShortcutRow__Desc">List view</span>
+</div>
+<div class="ShortcutRow">
+<div class="ShortcutRow__Keys">
+<kbd>C</kbd>
+</div>
+<span class="ShortcutRow__Desc">Compact view</span>
+</div>
+<div class="ShortcutRow">
+<div class="ShortcutRow__Keys">
+<kbd>F</kbd>
+</div>
+<span class="ShortcutRow__Desc">Toggle filters</span>
+</div>
+</div>
+<div class="ShortcutCategory">
+<h3 class="ShortcutCategory__Title">Actions</h3>
+<div class="ShortcutRow">
+<div class="ShortcutRow__Keys">
+<kbd>B</kbd>
+</div>
+<span class="ShortcutRow__Desc">Bookmarks tab</span>
+</div>
+<div class="ShortcutRow">
+<div class="ShortcutRow__Keys">
+<kbd>N</kbd>
+</div>
+<span class="ShortcutRow__Desc">Contribute note</span>
+</div>
+<div class="ShortcutRow">
+<div class="ShortcutRow__Keys">
+<kbd>R</kbd>
+</div>
+<span class="ShortcutRow__Desc">Reset filters</span>
+</div>
+<div class="ShortcutRow">
+<div class="ShortcutRow__Keys">
+<kbd>?</kbd>
+</div>
+<span class="ShortcutRow__Desc">Show shortcuts</span>
+</div>
+<div class="ShortcutRow">
+<div class="ShortcutRow__Keys">
+<kbd>Ctrl</kbd>
+<kbd>K</kbd>
+</div>
+<span class="ShortcutRow__Desc">Command palette</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="ModalOverlay" id="SettingsModalOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="SettingsModalTitle" tabindex="-1">
+<div class="ModalContainer ModalContainer--Settings" id="SettingsModal">
+<div class="ModalContainer__Header">
+<h2 class="ModalContainer__Title" id="SettingsModalTitle">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<circle cx="12" cy="12" r="3"></circle>
+<path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83 0 2 2 0 010-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 010-2.83 2 2 0 012.83 0l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 0 2 2 0 010 2.83l-.06.06a1.65 1.65 0 00-.33 1.82V9c.26.604.852.997 1.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"></path>
+</svg>
+                        Settings
+
+</h2>
+<button class="ModalContainer__CloseBtn" id="CloseSettingsModal" aria-label="Close">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+<line x1="18" y1="6" x2="6" y2="18"></line>
+<line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="ModalContainer__Body SettingsModalBody">
+<div class="SettingsSection">
+<h3 class="SettingsSection__Title">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<circle cx="13.5" cy="6.5" r=".5"></circle>
+<circle cx="17.5" cy="10.5" r=".5"></circle>
+<circle cx="8.5" cy="7.5" r=".5"></circle>
+<circle cx="6.5" cy="12.5" r=".5"></circle>
+<path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"></path>
+</svg>
+                            Appearance
+</h3>
+<div class="SettingsItem">
+<div class="SettingsItem__Info">
+<label class="SettingsItem__Label" for="SettingThemeSelect">Theme</label>
+<p class="SettingsItem__Desc">Light, dark, or system</p>
+</div>
+<select class="SettingsItem__Select" id="SettingThemeSelect">
+<option value="light">Light</option>
+<option value="dark">Dark</option>
+<option value="auto">System</option>
+</select>
+</div>
+<div class="SettingsItem">
+<div class="SettingsItem__Info">
+<label class="SettingsItem__Label" for="SettingDefaultView">Default View</label>
+<p class="SettingsItem__Desc">Grid, list, or compact</p>
+</div>
+<select class="SettingsItem__Select" id="SettingDefaultView">
+<option value="grid">Grid</option>
+<option value="list">List</option>
+<option value="compact">Compact</option>
+</select>
+</div>
+<div class="SettingsItem">
+<div class="SettingsItem__Info">
+<label class="SettingsItem__Label" for="SettingCompactToggle">Compact Mode</label>
+<p class="SettingsItem__Desc">Reduce spacing</p>
+</div>
+<label class="ToggleSwitch">
+<input type="checkbox" id="SettingCompactToggle">
+<span class="ToggleSwitch__Track">
+<span class="ToggleSwitch__Knob"></span>
+</span>
+</label>
+</div>
+</div>
+<div class="SettingsSection">
+<h3 class="SettingsSection__Title">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+                            Behavior
+</h3>
+<div class="SettingsItem">
+<div class="SettingsItem__Info">
+<label class="SettingsItem__Label" for="SettingAnimationsToggle">Animations</label>
+<p class="SettingsItem__Desc">UI animations</p>
+</div>
+<label class="ToggleSwitch">
+<input type="checkbox" id="SettingAnimationsToggle" checked>
+<span class="ToggleSwitch__Track">
+<span class="ToggleSwitch__Knob"></span>
+</span>
+</label>
+</div>
+<div class="SettingsItem">
+<div class="SettingsItem__Info">
+<label class="SettingsItem__Label" for="SettingAutoCompleteToggle">Auto-complete</label>
+<p class="SettingsItem__Desc">Search suggestions</p>
+</div>
+<label class="ToggleSwitch">
+<input type="checkbox" id="SettingAutoCompleteToggle" checked>
+<span class="ToggleSwitch__Track">
+<span class="ToggleSwitch__Knob"></span>
+</span>
+</label>
+</div>
+<div class="SettingsItem">
+<div class="SettingsItem__Info">
+<label class="SettingsItem__Label" for="SettingNotesPerPage">Notes Per Page</label>
+<p class="SettingsItem__Desc">Load batch size</p>
+</div>
+<select class="SettingsItem__Select" id="SettingNotesPerPage">
+<option value="6">6</option>
+<option value="12" selected>12</option>
+<option value="24">24</option>
+<option value="48">All</option>
+</select>
+</div>
+</div>
+<div class="SettingsSection">
+<h3 class="SettingsSection__Title">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+<polyline points="7 10 12 15 17 10"></polyline>
+<line x1="12" y1="15" x2="12" y2="3"></line>
+</svg>
+                            Data
+</h3>
+<div class="SettingsItem">
+<div class="SettingsItem__Info">
+<label class="SettingsItem__Label">Bookmarks</label>
+<p class="SettingsItem__Desc">Clear saved bookmarks</p>
+</div>
+<button class="SettingsItem__ActionBtn SettingsItem__ActionBtn--Danger" id="SettingClearBookmarks">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<polyline points="3 6 5 6 21 6"></polyline>
+<path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+</svg>
+                                Clear
+</button>
+</div>
+<div class="SettingsItem">
+<div class="SettingsItem__Info">
+<label class="SettingsItem__Label">Contributed Files</label>
+<p class="SettingsItem__Desc">Clear uploaded files from browser storage (IndexedDB)</p>
+</div>
+<button class="SettingsItem__ActionBtn SettingsItem__ActionBtn--Danger" id="SettingClearIndexedDB">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<polyline points="3 6 5 6 21 6"></polyline>
+<path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"></path>
+</svg>
+                                Clear
+</button>
+</div>
+<div class="SettingsItem">
+<div class="SettingsItem__Info">
+<label class="SettingsItem__Label">Export Data</label>
+<p class="SettingsItem__Desc">Bookmarks + notes as JSON</p>
+</div>
+<button class="SettingsItem__ActionBtn" id="SettingExportData">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+<polyline points="7 10 12 15 17 10"></polyline>
+<line x1="12" y1="15" x2="12" y2="3"></line>
+</svg>
+                                Export
+</button>
+</div>
+<div class="SettingsItem">
+<div class="SettingsItem__Info">
+<label class="SettingsItem__Label">Import Data</label>
+<p class="SettingsItem__Desc">Restore from JSON</p>
+</div>
+<label class="SettingsItem__ActionBtn">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<polyline points="17 8 12 3 7 8"></polyline>
+<line x1="12" y1="3" x2="12" y2="15"></line>
+<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+</svg>
+                                Import<input type="file" id="SettingImportFile" accept=".json" style="display:none;">
+</label>
+</div>
+</div>
+<div class="SettingsFooter">
+<button class="SettingsFooter__ResetBtn" id="SettingResetDefaults">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<polyline points="1 4 1 10 7 10"></polyline>
+<path d="M3.51 15a9 9 0 102.13-9.36L1 10"></path>
+</svg>
+                            Reset Defaults
+</button>
+<p class="SettingsFooter__Storage" id="StorageUsageInfo">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0022 16z"></path>
+</svg>
+<span id="StorageUsedValue">0 KB</span>
+                            used
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="ModalOverlay" id="ConfirmDialogOverlay" role="alertdialog" aria-modal="true" aria-hidden="true" aria-labelledby="ConfirmDialogTitle" aria-describedby="ConfirmDialogMessage" tabindex="-1">
+<div class="ModalContainer ModalContainer--Confirm" id="ConfirmDialog">
+<div class="ModalContainer__Header">
+<h2 class="ModalContainer__Title" id="ConfirmDialogTitle">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"></path>
+<line x1="12" y1="9" x2="12" y2="13"></line>
+<line x1="12" y1="17" x2="12.01" y2="17"></line>
+</svg>
+                        Confirm
+</h2>
+<button class="ModalContainer__CloseBtn" id="CloseConfirmDialog" aria-label="Cancel">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+<line x1="18" y1="6" x2="6" y2="18"></line>
+<line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="ModalContainer__Body ConfirmDialogBody">
+<p class="ConfirmDialogBody__Message" id="ConfirmDialogMessage">Are you sure?</p>
+<div class="ConfirmDialogBody__Actions">
+<button class="ConfirmDialogBody__CancelBtn" id="ConfirmDialogCancelBtn">Cancel</button>
+<button class="ConfirmDialogBody__ConfirmBtn" id="ConfirmDialogOkBtn">Confirm</button>
+</div>
+</div>
+</div>
+</div>
+<div class="ModalOverlay" id="AboutModalOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="AboutModalTitle" tabindex="-1">
+<div class="ModalContainer ModalContainer--About" id="AboutModal">
+<div class="ModalContainer__Header">
+<h2 class="ModalContainer__Title" id="AboutModalTitle">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<circle cx="12" cy="12" r="10"></circle>
+<line x1="12" y1="16" x2="12" y2="12"></line>
+<line x1="12" y1="8" x2="12.01" y2="8"></line>
+</svg>
+                        About NoteVault
+</h2>
+<button class="ModalContainer__CloseBtn" id="CloseAboutModal" aria-label="Close">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+<line x1="18" y1="6" x2="6" y2="18"></line>
+<line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="ModalContainer__Body AboutModalBody">
+<div class="AboutModalBody__Hero">
+<span class="AboutModalBody__Logo">📚</span>
+<h3 class="AboutModalBody__AppName">NoteVault</h3>
+<p class="AboutModalBody__Version">Version 1.0.0 &bull;March 2026</p>
+<p class="AboutModalBody__TeamBadge">
+                            Designed &amp;Developed by <strong>Project K Squad</strong>
+</p>
+</div>
+<div class="AboutModalBody__Description">
+<p>
+                            NoteVault is a college notes sharing platform designed and developed by <strong>Project K Squad</strong>
+                            . Each note focuses on one subject with a detailed list of topics covered. Built with Trie-based search, HashMap indexing, MergeSort ordering, IndexedDB file storage, and full OOP architecture.
+</p>
+</div>
+<div class="AboutModalBody__">
+<h4 class="AboutModalBody__SectionTitle">The  — Project K Squad</h4>
+<div class="TeamGrid" id="TeamGrid">
+<div class="TeamMember" data-member-id="1">
+<div class="TeamMember__ProfileRow">
+<div class="TeamMember__Avatar" style="background:var(--stream-engineering);">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+<circle cx="12" cy="7" r="4"></circle>
+</svg>
+</div>
+<div class="TeamMember__Identity">
+<h4 class="TeamMember__Name">Karthik R</h4>
+<span class="TeamMember__Role">Project Lead & Prompt Engineer</span>
+<span class="TeamMember__Pin">PIN: 23022-CM-032</span>
+</div>
+</div>
+<p class="TeamMember__Desc">Led the overall development and coordination of the NoteVault project. Responsible for project planning, feature design, and prompt engineering to guide system functionality and development workflow. Worked with the core technology stack including HTML, CSS, and JavaScript, and managed the project repository and version control using GitHub to ensure smooth collaboration and structured code management.</p>
+<div class="TeamMember__Socials">
+<a href="#" class="TeamMember__SocialLink" aria-label="WhatsApp" title="WhatsApp">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+</svg>
+</a>
+<a href="#" class="TeamMember__SocialLink" aria-label="Instagram" title="Instagram">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+<path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
+<line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+</svg>
+</a>
+<a href="#" class="TeamMember__SocialLink" aria-label="GitHub" title="GitHub">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+</svg>
+</a>
+<a href="mailto:karthik@projectk.dev" class="TeamMember__SocialLink" aria-label="Email" title="Email">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+<polyline points="22,6 12,13 2,6"></polyline>
+</svg>
+</a>
+</div>
+</div>
+<div class="TeamMember" data-member-id="2">
+<div class="TeamMember__ProfileRow">
+<div class="TeamMember__Avatar" style="background:var(--stream-arts);">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+<circle cx="12" cy="7" r="4"></circle>
+</svg>
+</div>
+<div class="TeamMember__Identity">
+<h4 class="TeamMember__Name">Sai Dhanunjay CH V</h4>
+<span class="TeamMember__Role">Fronted Developer</span>
+<span class="TeamMember__Pin">PIN: 23438-CM-101</span>
+</div>
+</div>
+<p class="TeamMember__Desc">Designed the complete user interface and user experience. Created the CSS design system with custom properties, responsive breakpoints, animations, dark mode, and accessibility standards.</p>
+<div class="TeamMember__Socials">
+<a href="#" class="TeamMember__SocialLink" aria-label="WhatsApp" title="WhatsApp">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+</svg>
+</a>
+<a href="#" class="TeamMember__SocialLink" aria-label="Instagram" title="Instagram">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+<path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
+<line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+</svg>
+</a>
+<a href="#" class="TeamMember__SocialLink" aria-label="GitHub" title="GitHub">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+</svg>
+</a>
+<a href="mailto:kavya@projectk.dev" class="TeamMember__SocialLink" aria-label="Email" title="Email">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+<polyline points="22,6 12,13 2,6"></polyline>
+</svg>
+</a>
+</div>
+</div>
+<div class="TeamMember" data-member-id="3">
+<div class="TeamMember__ProfileRow">
+<div class="TeamMember__Avatar" style="background:var(--stream-science);">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+<circle cx="12" cy="7" r="4"></circle>
+</svg>
+</div>
+<div class="TeamMember__Identity">
+<h4 class="TeamMember__Name">Rangaswamy M K</h4>
+<span class="TeamMember__Role">Backend Developer &amp;System Designer</span>
+<span class="TeamMember__Pin">PIN: 23022-CM-032</span>
+</div>
+</div>
+<p class="TeamMember__Desc">Implemented all data structures and algorithms: Trie for auto-complete search, HashMap and HashSet for O(1) lookups, Queue for recent searches, MergeSort for stable multi-key sorting, and Levenshtein distance for fuzzy matching.</p>
+<div class="TeamMember__Socials">
+<a href="#" class="TeamMember__SocialLink" aria-label="WhatsApp" title="WhatsApp">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+</svg>
+</a>
+<a href="#" class="TeamMember__SocialLink" aria-label="Instagram" title="Instagram">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+<path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
+<line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+</svg>
+</a>
+<a href="#" class="TeamMember__SocialLink" aria-label="GitHub" title="GitHub">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+</svg>
+</a>
+<a href="mailto:kiran@projectk.dev" class="TeamMember__SocialLink" aria-label="Email" title="Email">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+<polyline points="22,6 12,13 2,6"></polyline>
+</svg>
+</a>
+</div>
+</div>
+<div class="TeamMember" data-member-id="4">
+<div class="TeamMember__ProfileRow">
+<div class="TeamMember__Avatar" style="background:var(--stream-medical);">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+<circle cx="12" cy="7" r="4"></circle>
+</svg>
+</div>
+<div class="TeamMember__Identity">
+<h4 class="TeamMember__Name">Yughandhar K</h4>
+<span class="TeamMember__Role">Notes Contribution &amp;System Designer</span>
+<span class="TeamMember__Pin">PIN: 23438-CM-109</span>
+</div>
+</div>
+<p class="TeamMember__Desc">Built the IndexedDB integration for storing contributed files in browser storage. Developed the StorageManager for localStorage persistence, data import/export functionality, and the contribution file upload system with drag-and-drop support.</p>
+<div class="TeamMember__Socials">
+<a href="#" class="TeamMember__SocialLink" aria-label="WhatsApp" title="WhatsApp">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+</svg>
+</a>
+<a href="#" class="TeamMember__SocialLink" aria-label="Instagram" title="Instagram">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+<path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
+<line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+</svg>
+</a>
+<a href="#" class="TeamMember__SocialLink" aria-label="GitHub" title="GitHub">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+</svg>
+</a>
+<a href="mailto:keerthi@projectk.dev" class="TeamMember__SocialLink" aria-label="Email" title="Email">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+<polyline points="22,6 12,13 2,6"></polyline>
+</svg>
+</a>
+</div>
+</div>
+<div class="TeamMember" data-member-id="5">
+<div class="TeamMember__ProfileRow">
+<div class="TeamMember__Avatar" style="background:var(--stream-commerce);">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+<circle cx="12" cy="7" r="4"></circle>
+</svg>
+</div>
+<div class="TeamMember__Identity">
+<h4 class="TeamMember__Name">KRenith Kumar R</h4>
+<span class="TeamMember__Role">Tester &amp;QA</span>
+<span class="TeamMember__Pin">PIN: 23438-CM-067</span>
+</div>
+</div>
+<p class="TeamMember__Desc">Developed component integration, event binding architecture, keyboard shortcuts system, toast notifications, modal management with focus trapping, scroll progress tracking, and comprehensive cross-browser testing.</p>
+<div class="TeamMember__Socials">
+<a href="#" class="TeamMember__SocialLink" aria-label="WhatsApp" title="WhatsApp">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+<path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"></path>
+</svg>
+</a>
+<a href="#" class="TeamMember__SocialLink" aria-label="Instagram" title="Instagram">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+<path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path>
+<line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+</svg>
+</a>
+<a href="#" class="TeamMember__SocialLink" aria-label="GitHub" title="GitHub">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+<path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+</svg>
+</a>
+<a href="mailto:kumar@projectk.dev" class="TeamMember__SocialLink" aria-label="Email" title="Email">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+<polyline points="22,6 12,13 2,6"></polyline>
+</svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div class="AboutModalBody__Features">
+<h4 class="AboutModalBody__SectionTitle">Key Features</h4>
+<ul class="AboutModalBody__FeatureList">
+<li>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+                                Each note covers one subject with a detailed list of topics inside it
+</li>
+<li>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+                                Upload and contribute your own notes — files stay in your browser only
+</li>
+<li>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+                                Download pre-loaded notes directly from the files folder on the server
+</li>
+<li>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+                                Smart filters that update in real-time as you select different options
+</li>
+<li>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+                                Start typing and get instant search suggestions powered by Trie data structure
+</li>
+<li>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+                                Bookmark your favorite notes for quick access anytime
+</li>
+<li>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+                                Sort notes by semester, course, year, or alphabetically with one click
+</li>
+<li>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.5">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+                                Dark mode support, 15+ keyboard shortcuts, and fully responsive design
+</li>
+</ul>
+</div>
+<div class="AboutModalBody__Tech">
+<h4 class="AboutModalBody__SectionTitle">Architecture</h4>
+<div class="AboutModalBody__TechGrid">
+<div class="AboutModalBody__TechItem">
+<span class="AboutModalBody__TechLabel">DSA</span>
+<span class="AboutModalBody__TechValue">Trie, HashMap, HashSet, Queue, MergeSort, BinarySearch, Levenshtein</span>
+</div>
+<div class="AboutModalBody__TechItem">
+<span class="AboutModalBody__TechLabel">OOP</span>
+<span class="AboutModalBody__TechValue">Observer, Factory, Singleton, Strategy, Template, MVC</span>
+</div>
+<div class="AboutModalBody__TechItem">
+<span class="AboutModalBody__TechLabel">Stack</span>
+<span class="AboutModalBody__TechValue">Semantic HTML5, CSS3 Custom Properties, ES6+ Vanilla JS</span>
+</div>
+<div class="AboutModalBody__TechItem">
+<span class="AboutModalBody__TechLabel">Storage</span>
+<span class="AboutModalBody__TechValue">IndexedDB for files, localStorage for settings, import/export JSON</span>
+</div>
+<div class="AboutModalBody__TechItem">
+<span class="AboutModalBody__TechLabel">Files</span>
+<span class="AboutModalBody__TechValue">Server files from files/ directory, contributed files in IndexedDB</span>
+</div>
+</div>
+</div>
+<div class="AboutModalBody__Credits">
+<p>
+&copy;2025 <strong>Project K Squad</strong>
+                            . Version 1.0 &bull;March 2026. Designed &amp;developed for students, by students.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="ModalOverlay" id="PrivacyModalOverlay" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="PrivacyModalTitle" tabindex="-1">
+<div class="ModalContainer ModalContainer--Privacy" id="PrivacyModal">
+<div class="ModalContainer__Header">
+<h2 class="ModalContainer__Title" id="PrivacyModalTitle">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+</svg>
+                        Privacy &amp;Security
+</h2>
+<button class="ModalContainer__CloseBtn" id="ClosePrivacyModal" aria-label="Close">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+<line x1="18" y1="6" x2="6" y2="18"></line>
+<line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+</button>
+</div>
+<div class="ModalContainer__Body PrivacyModalBody">
+<div class="PrivacySection">
+<div class="PrivacySection__Icon" aria-hidden="true">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+</svg>
+</div>
+<h3 class="PrivacySection__Title">Your Privacy Matters</h3>
+<p class="PrivacySection__Text">NoteVault is a fully client-side application built by Project K Squad. No data ever leaves your browser.</p>
+</div>
+<div class="PrivacySection">
+<h4 class="PrivacySection__Heading">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2">
+<path d="M22 11.08V12a10 10 0 11-5.93-9.14"></path>
+<polyline points="22 4 12 14.01 9 11.01"></polyline>
+</svg>
+                            No Data Collection
+</h4>
+<p class="PrivacySection__Text">NoteVault does not collect, transmit, or store any personal information on external servers. Everything runs entirely within your web browser.</p>
+</div>
+<div class="PrivacySection">
+<h4 class="PrivacySection__Heading">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--info)" stroke-width="2">
+<path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0022 16z"></path>
+</svg>
+                            Local Storage Only
+</h4>
+<p class="PrivacySection__Text">Your bookmarks, preferences, and settings are stored in localStorage. Contributed files are stored in IndexedDB. No cookies are used.</p>
+<ul class="PrivacySection__List">
+<li>
+<strong>localStorage:</strong>
+                                Bookmarks, theme, view settings, recent searches, contributed note metadata
+</li>
+<li>
+<strong>IndexedDB:</strong>
+                                Uploaded file data from contributions — stored locally in your browser
+</li>
+<li>
+<strong>No Cookies:</strong>
+                                NoteVault uses zero cookies
+</li>
+<li>
+<strong>No Analytics:</strong>
+                                No tracking scripts, pixels, or analytics tools
+</li>
+</ul>
+</div>
+<div class="PrivacySection">
+<h4 class="PrivacySection__Heading">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--warning)" stroke-width="2">
+<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+<polyline points="14 2 14 8 20 8"></polyline>
+</svg>
+                            File Downloads
+</h4>
+<p class="PrivacySection__Text">
+                            Pre-loaded notes are served from the local <code>files/</code>
+                            directory. Contributed files are retrieved from your browser's IndexedDB storage.
+</p>
+</div>
+<div class="PrivacySection">
+<h4 class="PrivacySection__Heading">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2">
+<rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+<path d="M7 11V7a5 5 0 0110 0v4"></path>
+</svg>
+                            Security Measures
+</h4>
+<ul class="PrivacySection__List">
+<li>
+<strong>Input Sanitization:</strong>
+                                All user inputs are sanitized to prevent XSS attacks
+</li>
+<li>
+<strong>Content Security:</strong>
+                                No external scripts or resources are loaded
+</li>
+<li>
+<strong>Browser Sandbox:</strong>
+                                All operations run within the browser's security sandbox
+</li>
+<li>
+<strong>No Network Requests:</strong>
+                                Zero external API calls or network requests
+</li>
+<li>
+<strong>File Validation:</strong>
+                                Uploaded files are validated for type and size
+</li>
+</ul>
+</div>
+<div class="PrivacySection">
+<h4 class="PrivacySection__Heading">
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2">
+<path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
+<circle cx="12" cy="7" r="4"></circle>
+</svg>
+                            Your Rights
+</h4>
+<ul class="PrivacySection__List">
+<li>
+<strong>Export:</strong>
+                                Export all your data as JSON anytime from Settings
+</li>
+<li>
+<strong>Import:</strong>
+                                Import previously exported data to restore your setup
+</li>
+<li>
+<strong>Delete:</strong>
+                                Clear bookmarks, contributed files, or all data from Settings
+</li>
+<li>
+<strong>Portability:</strong>
+                                Your exported JSON file works across any browser
+</li>
+</ul>
+</div>
+<div class="PrivacySection PrivacySection--Footer">
+<p class="PrivacySection__Text PrivacySection__Text--Small">Last updated: March 2026. This privacy policy applies to NoteVault v1.0 by Project K Squad.</p>
+</div>
+</div>
+</div>
+</div>
+<button class="BackToTopButton" id="BackToTopButton" aria-label="Scroll to top" title="Back to top (Home)" tabindex="0">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+<polyline points="18 15 12 9 6 15"></polyline>
+</svg>
+</button>
+<div class="ToastNotificationArea" id="ToastNotificationArea" role="status" aria-live="assertive" aria-atomic="false" aria-relevant="additions"></div>
+<template id="NoteCardTemplate">
+<article class="NoteCard" data-note-id="" data-source="" tabindex="0" role="article" aria-label="">
+<div class="NoteCard__AccentBar" aria-hidden="true"></div>
+<div class="NoteCard__Body">
+<div class="NoteCard__TopRow">
+<div class="NoteCard__Badges">
+<span class="Badge Badge--Stream" data-stream-name=""></span>
+<span class="Badge Badge--Course"></span>
+<span class="Badge Badge--Semester"></span>
+</div>
+<button class="NoteCard__BookmarkBtn" data-note-id="" aria-label="Bookmark" title="Bookmark">
+<svg class="BookmarkIcon BookmarkIcon--Empty" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"></path>
+</svg>
+<svg class="BookmarkIcon BookmarkIcon--Filled" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" style="display:none;">
+<path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"></path>
+</svg>
+</button>
+</div>
+<div class="NoteCard__SubjectArea">
+<h3 class="NoteCard__Title"></h3>
+<p class="NoteCard__SubjectName"></p>
+<div class="NoteCard__TopicChips" aria-label="Topics covered"></div>
+<p class="NoteCard__AuthorLine"></p>
+</div>
+</div>
+<div class="NoteCard__Footer">
+<span class="NoteCard__FileInfo">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path>
+<polyline points="14 2 14 8 20 8"></polyline>
+</svg>
+<span class="NoteCard__FileInfoText"></span>
+</span>
+<button class="DownloadNoteButton" data-note-id="" aria-label="Download">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+<path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path>
+<polyline points="7 10 12 15 17 10"></polyline>
+<line x1="12" y1="15" x2="12" y2="3"></line>
+</svg>
+                        Download
+
+</button>
+</div>
+</article>
+</template>
+<template id="ToastNotificationTemplate">
+<div class="ToastNotification" role="alert" aria-live="assertive">
+<span class="ToastNotification__Icon" aria-hidden="true"></span>
+<span class="ToastNotification__Message"></span>
+</div>
+</template>
+<template id="SearchSuggestionItemTemplate">
+<div class="SuggestionItem" data-note-id="" role="option" aria-selected="false" tabindex="-1">
+<div class="SuggestionItem__Icon" aria-hidden="true"></div>
+<div class="SuggestionItem__TextArea">
+<div class="SuggestionItem__Title"></div>
+<div class="SuggestionItem__Meta"></div>
+</div>
+<div class="SuggestionItem__TopicCount" aria-hidden="true"></div>
+</div>
+</template>
+<template id="ActiveFilterChipTemplate">
+<span class="FilterChip" data-filter-key="" role="listitem" tabindex="0" aria-label="">
+<span class="FilterChip__Label"></span>
+<span class="FilterChip__RemoveBtn" role="button" aria-label="Remove filter" tabindex="0">
+<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+<line x1="18" y1="6" x2="6" y2="18"></line>
+<line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+</span>
+</span>
+</template>
+<template id="TopicChipTemplate">
+<span class="TopicChip" data-topic-name="" aria-label="">
+<span class="TopicChip__Dot" aria-hidden="true"></span>
+<span class="TopicChip__Name"></span>
+</span>
+</template>
+<template id="RelatedNoteItemTemplate">
+<div class="RelatedNoteItem" data-note-id="" tabindex="0" role="button" aria-label="">
+<div class="RelatedNoteItem__AccentDot" aria-hidden="true"></div>
+<div class="RelatedNoteItem__Info">
+<span class="RelatedNoteItem__Title"></span>
+<span class="RelatedNoteItem__Meta"></span>
+</div>
+<div class="RelatedNoteItem__Arrow" aria-hidden="true">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+<polyline points="9 18 15 12 9 6"></polyline>
+</svg>
+</div>
+</div>
+</template>
+<template id="RecentSearchItemTemplate">
+<div class="RecentSearchItem" data-search-query="" role="option" tabindex="-1">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="RecentSearchItem__Icon">
+<circle cx="12" cy="12" r="10"></circle>
+<polyline points="12 6 12 12 16 14"></polyline>
+</svg>
+<span class="RecentSearchItem__Text"></span>
+<button class="RecentSearchItem__RemoveBtn" aria-label="Remove" tabindex="-1">
+<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+<line x1="18" y1="6" x2="6" y2="18"></line>
+<line x1="6" y1="6" x2="18" y2="18"></line>
+</svg>
+</button>
+</div>
+</template>
+<script type="application/json" id="StreamConfigurationData">
+            {
+                "Engineering": {
+                    "color": "#6C63FF",
+                    "icon": "⚙️",
+                    "label": "Engineering"
+                },
+                "Science": {
+                    "color": "#0EA5E9",
+                    "icon": "🔬",
+                    "label": "Science"
+                },
+                "Commerce": {
+                    "color": "#F59E0B",
+                    "icon": "💼",
+                    "label": "Commerce"
+                },
+                "Arts": {
+                    "color": "#EF4444",
+                    "icon": "🎨",
+                    "label": "Arts"
+                },
+                "Medical": {
+                    "color": "#10B981",
+                    "icon": "🏥",
+                    "label": "Medical"
+                }
+            }</script>
+<script type="application/json" id="ApplicationConfigData">
+            {
+                "version": "1.0.0",
+                "developmentDate": "March 2026",
+                "defaultPageSize": 12,
+                "searchDebounceMs": 300,
+                "maxSuggestionCount": 8,
+                "maxRecentSearches": 5,
+                "toastDurationMs": 2500,
+                "scrollTopThreshold": 400,
+                "counterAnimationDuration": 1500,
+                "cardRevealStaggerMs": 50,
+                "maxFileUploadSize": 52428800,
+                "allowedFileTypes": [
+                    ".pdf",
+                    ".doc",
+                    ".docx",
+                    ".ppt",
+                    ".pptx",
+                    ".txt",
+                    ".xlsx",
+                    ".xls"
+                ],
+                "filesDirectory": "files/",
+                "indexedDBName": "NoteVaultDB",
+                "indexedDBVersion": 1,
+                "storageType": "client-side-only",
+                "particleConfig": {
+                    "mobile": 8,
+                    "desktop": 15
+                },
+                "breakpoints": {
+                    "mobile": 480,
+                    "tablet": 768,
+                    "desktop": 1024,
+                    "wide": 1440,
+                    "ultrawide": 1920
+                },
+                "dataModel": "oneSubjectManyTopics",
+                "developedBy": "Project K Squad"
+            }</script>
+<script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebApplication",
+                "name": "NoteVault",
+                "description": "College notes sharing platform by Project K Squad. Each note covers one subject with detailed topics. Search, filter, contribute, and download academic notes with files stored via IndexedDB.",
+                "url": "https://notevault.app",
+                "applicationCategory": "EducationalApplication",
+                "operatingSystem": "Web",
+                "version": "1.0.0",
+                "dateCreated": "2026-03",
+                "offers": {
+                    "@type": "Offer",
+                    "price": "0",
+                    "priceCurrency": "USD"
+                },
+                "author": {
+                    "@type": "Organization",
+                    "name": "Project K Squad"
+                },
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://notevault.app/?q={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                },
+                "featureList": [
+                    "One subject per note with detailed topic listing",
+                    "Contribute notes with file upload stored locally in browser via IndexedDB",
+                    "Download files from files/ server directory",
+                    "Trie-based auto-complete search",
+                    "Cascading filters with real-time counts and bidirectional sync with stream icons",
+                    "O(1) bookmark management with HashSet",
+                    "Stable multi-criteria sorting with MergeSort",
+                    "Dark mode with system preference detection",
+                    "15+ keyboard shortcuts",
+                    "Fully responsive design",
+                    "Export and import user data",
+                    "Privacy-first: all data stays in browser"
+                ]
+            }</script>
+<script src="app.js" defer></script>
+</body>
+</html>
